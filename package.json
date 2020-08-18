@@ -10,11 +10,20 @@
     "type": "git",
     "url": "git+https://github.com/imagineLife/data-uploader.git"
   },
-  "keywords": ["electron","csv","upload","data","react"],
+  "keywords": [
+    "electron",
+    "csv",
+    "upload",
+    "data",
+    "react"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/imagineLife/data-uploader/issues"
   },
-  "homepage": "https://github.com/imagineLife/data-uploader#readme"
+  "homepage": "https://github.com/imagineLife/data-uploader#readme",
+  "dependencies": {
+    "electron": "^9.2.1"
+  }
 }
