@@ -4,7 +4,11 @@
   "description": "upload from desktop to api",
   "main": "app/main.js",
   "scripts": {
-    "start": "electron .",
+    "wp": "webpack",
+    "wp-prod": "webpack --mode production --config webpack.build.config.js",
+    "prod": "npm run wp-prod && electron --noDevServer .",
+    "local": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js --mode development",
+    "postpackage": "electron-packager ./ --out=./builds",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -33,6 +37,7 @@
     "css-loader": "^4.2.1",
     "file-loader": "^6.0.0",
     "mini-css-extract-plugin": "^0.10.0",
-    "style-loader": "^1.2.1"
+    "style-loader": "^1.2.1",
+    "webpack-dev-server": "^3.11.0"
   }
 }
