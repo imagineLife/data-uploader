@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/imagineLife/data-uploader#readme",
   "dependencies": {
-    "electron": "^9.2.1"
+    "electron": "^9.2.1",
+    "electron-packager": "^15.0.0"
   }
 }
