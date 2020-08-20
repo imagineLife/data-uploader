@@ -28,5 +28,11 @@
     "electron": "^9.2.1",
     "electron-devtools-installer": "^3.1.1",
     "electron-packager": "^15.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^4.2.1",
+    "file-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^0.10.0",
+    "style-loader": "^1.2.1"
   }
 }
