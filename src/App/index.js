@@ -1,16 +1,13 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 const { remote: { dialog }} = require('electron'); 
 const path = require('path'); 
-const fs = require('fs'); 
+const fs = require('fs').promises; 
 
 const App = () => {
 	
 	const uploadBtnRef = useRef() 
-	  
-	// Defining a Global file path Variable to store  
-	// user-selected file 
-	global.filepath = undefined; 
-	
+	const [uploadedFilePath, setUploadedFilePath] = useState(null)
+	const [fileData, setFileData] = useState(null)
 	useEffect(() => {
 		uploadBtnRef.current.addEventListener('click', async () => { 
 			const electronFileDialogueObj = { 
@@ -35,30 +32,32 @@ const App = () => {
 	   try{
         const dialogueFile = await dialog.showOpenDialog(electronFileDialogueObj)
         if (!dialogueFile.canceled) { 
-          // Updating the GLOBAL filepath variable  
-          // to user-selected file. 
-          global.filepath = dialogueFile.filePaths[0].toString(); 
-          console.log(global.filepath); 
-  
-					if (global.filepath) { 
-					  fs.readFile(global.filepath, {encoding: 'utf-8'}, function(err,data) { 
-					     if (!err) { 
-					          console.log('received data: ' + data); 
-					     } else { 
-					          console.log(err); 
-					      } 
-					   }); 
-					 }
+          setUploadedFilePath(dialogueFile.filePaths[0].toString());
         }   
       }catch(e){ 
           console.log(e) 
       }; 
 		});	
-	}) 
+	},[]) 
+
+	useEffect(() => {
+		if (uploadedFilePath && !fileData) { 
+			const readFileFn = async () => {
+				try{
+					let fileData = await fs.readFile(uploadedFilePath, {encoding: 'utf-8'});
+					setFileData(fileData)
+				}catch(e){
+
+				}
+			}
+			readFileFn()
+		}
+	}, [uploadedFilePath]) 
 
 	return (<main>
 		<h2>Data Uploader</h2>
 		<button id="upload-btn" ref={uploadBtnRef}>Upload File</button>
+		{fileData && <p>{JSON.stringify(fileData)}</p>}
 	</main>)
 }
 export default App;
