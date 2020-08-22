@@ -9,28 +9,18 @@ const AppProvider = ({children}) => {
 	const [uploadedFilePath, setUploadedFilePath] = useState(null)
 	const [fileData, setFileData] = useState(null)
 
+	//Read-File side-effect
 	useEffect(() => {
 		if (uploadedFilePath && !fileData) { 
-			console.log('HERE?!');
-			console.log('uploadedFilePath')
-			console.log(uploadedFilePath)
-			console.log('!fileData')
-			console.log(!fileData)
-			
-			
 			const readFileFn = async () => {
 				try{
 					let fileData = await fs.readFile(uploadedFilePath, {encoding: 'utf-8'});
-					console.log('readFileRes');
-					console.log(fileData);
 					setFileData(fileData)
 				}catch(e){
 					console.log('readFileFn e')
 					console.log(e)
-					
 				}
 			}
-			console.log('CALLING readFileFn...');
 			readFileFn()
 		}
 	}, [uploadedFilePath]) 
