@@ -1,22 +1,26 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext, useState } from 'react';
 import { AppContext } from './context';
-const { remote: { dialog }} = require('electron'); 
+import DataTable from './../Components/DataTable'
+const { remote: { dialog, app }} = require('electron'); 
 const path = require('path');  
 
 const App = () => {
 
 	const {
-		uploadedFilePath, setUploadedFilePath,
-		fileData, setFileData
+		uploadedFilePath, 
+		setUploadedFilePath,
+		fileData
 	} = useContext(AppContext);
 	
 	const uploadBtnRef = useRef() 
-
+	
+	const [uploadFilePath] = useState(app.getAppPath());
+	
 	useEffect(() => {
 		uploadBtnRef.current.addEventListener('click', async () => { 
 			const electronFileDialogueObj = { 
         title: 'Select the File to be uploaded', 
-        defaultPath: path.join(__dirname, '../assets/'), 
+        defaultPath: uploadFilePath, 
         buttonLabel: 'Upload', 
         // Restricting the user to only Text Files. 
         filters: [ 
@@ -47,7 +51,7 @@ const App = () => {
 	return (<main>
 		<h2>Data Uploader</h2>
 		<button id="upload-btn" ref={uploadBtnRef}>Upload File</button>
-		{fileData && <p>{JSON.stringify(fileData)}</p>}
+		{!fileData ? null : <DataTable />}
 	</main>)
 }
 export default App;
