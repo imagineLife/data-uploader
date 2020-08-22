@@ -9,9 +9,6 @@ const App = () => {
 		uploadedFilePath, setUploadedFilePath,
 		fileData, setFileData
 	} = useContext(AppContext);
-	console.log('fileData')
-	console.log(fileData)
-	
 	
 	const uploadBtnRef = useRef() 
 
