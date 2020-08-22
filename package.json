@@ -2,7 +2,7 @@
   "name": "data-uploader",
   "version": "0.0.1",
   "description": "upload from desktop to api",
-  "main": "app/main.js",
+  "main": "./main.js",
   "scripts": {
     "wp": "webpack",
     "wp-prod": "webpack --mode production --config webpack.build.config.js",
