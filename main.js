@@ -1,10 +1,10 @@
-// main.js
-'use strict'
 // Import parts of electron to use
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const url = require('url')
 
+
+console.log('----/main.js here----');
 // Add React extension for development
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer')
 
