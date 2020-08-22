@@ -1,4 +1,7 @@
 import React from 'react';
 
-const App = () => (<div>/src/App/index.js Here</div>)
+const App = () => (<main>
+	<h2>Data Uploader</h2>
+	<button id="upload-btn">Upload File</button>
+</main>)
 export default App;
