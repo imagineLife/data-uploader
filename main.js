@@ -3,8 +3,6 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const url = require('url')
 
-
-console.log('----/main.js here----');
 // Add React extension for development
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer')
 
@@ -43,6 +41,9 @@ function createWindow() {
 	let indexPath
   // Determine the correct index.html file
   // (created by webpack) to load in dev and production
+
+  
+  
   if (dev && process.argv.indexOf('--noDevServer') === -1) {
     indexPath = url.format({
       protocol: 'http:',
@@ -57,7 +58,7 @@ function createWindow() {
       slashes: true
     })
   }
-
+  
   // Load the index.html
   mainWindow.loadURL(indexPath)
 
